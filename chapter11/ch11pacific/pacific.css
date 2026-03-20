@@ -506,20 +506,3 @@ input[type="submit"]:focus {
     max-width: 100%;
   }
 }
-
-/* --- Improved Table Mobile View --- */
-@media (max-width: 32.5rem) {
-  #special td {
-    position: relative; /* Added this */
-    padding-left: 40%;   /* Adjusted for label space */
-    text-align: left;
-    border: none;
-    border-bottom: 1px solid #eee;
-  }
-  
-  td::before {
-    content: attr(data-label); /* Pro-tip: Use HTML data attributes for labels! */
-    font-weight: bold;
-    color: #39c;
-  }
-}
