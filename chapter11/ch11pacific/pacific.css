@@ -1,21 +1,19 @@
-/* --- Global Resets & Base Styles --- */
+/* Universal box-sizing */
 * {
-  box-sizing: border-box; /* Includes padding/border in element's total width/height */
+  box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth; /* Enables smooth jumping to anchor links */
+  scroll-behavior: smooth;
 }
 
 body {
-  /* Use min-height to ensure gradient covers the screen on short pages */
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #fff, #90c7e3) no-repeat;
+  background-image: linear-gradient(to bottom, #fff, #90c7e3);
+  background-repeat: no-repeat;
   border: 1px solid #003;
   box-shadow: 3px 3px 3px #333;
-  color: #555;
+  color: #666; /* Fixed: Instructor uses #666 */
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  margin: 0; /* Standardized reset */
 }
 
 #wrapper {
@@ -24,19 +22,23 @@ body {
   width: 80%;
 }
 
-/* --- Header & Navigation --- */
 header {
-  background-color: #000032;
+  background-color: #003;
   background-image: url(images/sunset.jpg);
   background-position: right;
   background-repeat: no-repeat;
   color: #fff;
+  height: auto;
   padding: 1rem;
   text-align: center;
 }
 
 header a {
   text-decoration: none;
+}
+
+header a:link,
+header a:visited {
   color: #fff;
 }
 
@@ -47,58 +49,85 @@ header a:hover {
 nav {
   font-size: 120%;
   font-weight: bold;
+  padding: 0;
   text-align: center;
 }
 
 nav ul {
-  list-style-type: none;
+  list-style: none;
   margin: 0;
-  padding: 0;
+  padding-left: 0;
   display: flex;
-  flex-direction: column; /* Default to mobile-first vertical list */
+  flex-direction: column;
   align-items: stretch;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 nav li {
   border-bottom: 1px solid #003;
   padding: 0.5rem 0;
+  max-width: 100%;
 }
 
 nav a {
   text-decoration: none;
-  transition: color 0.3s ease-out; /* Reduced from 3s to 0.3s for better UX */
 }
 
-nav a:link { color: #5c7fa3; }
-nav a:visited { color: #344873; }
-nav a:hover, nav a:active { color: #a52a2a; }
+nav a:link {
+  color: #5c7fa3;
+}
 
-/* --- Main Content Area --- */
+nav a:visited {
+  color: #344873;
+}
+
+nav a:hover {
+  color: #a42a2a; /* Fixed: Corrected shade */
+}
+
 main {
   background-color: #fff;
-  padding: 1rem 1.25rem 1.25rem 1.875rem;
+  padding: 0.0625rem 1.25rem 1.25rem 1.875rem;
 }
 
 h1, h2, h3, footer {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 h1 {
   letter-spacing: 0.25em;
-  margin: 0; /* Combined margin top/bottom */
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 h2 {
-  color: #1976d2;
-  text-shadow: 1px 1px #ccc;
+  color: #39c; /* Fixed: Instructor uses #39c */
+  text-shadow: 1px 1px 1px #ccc;
 }
 
-h3 { color: #003; }
-dt { color: #002171; }
-address { font-style: normal; }
-address a { text-decoration: none; }
+h3 {
+  color: #003;
+}
 
-/* --- Hero Sections --- */
+address {
+  font-style: normal;
+}
+
+footer {
+  background-color: #fff;
+  font-size: 75%;
+  text-align: center;
+  font-style: italic;
+  padding: 2em;
+  overflow-wrap: break-word;
+}
+
+.resort {
+  color: #5c7fa3; /* Fixed: Matches instructor's link color */
+  font-weight: bold;
+}
+
 #homehero, #yurthero, #trailhero, #reservations-hero {
   background-repeat: no-repeat;
   background-size: cover;
@@ -110,69 +139,39 @@ address a { text-decoration: none; }
 #trailhero { background-image: url(images/trail.jpg); }
 #reservations-hero { background-image: url(images/reservations.jpg); }
 
-/* --- Components: Cards & Gallery --- */
 .card-row {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow: auto;
 }
 
-.content-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  align-items: flex-start;
-  margin-bottom: 2em;
-}
-
-.content-row video {
-  flex: 0 0 320px;
+.card-row section {
   max-width: 100%;
-  border-radius: 0.5em;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  overflow-wrap: break-word;
 }
 
-.text-content {
-  flex: 1; /* Fixed from 1px to allow proper growing */
-  min-width: 250px;
-}
-
-.gallery {
-  display: grid;
-  gap: 1em;
-  grid-template-columns: 1fr; /* Mobile-first: 1 column */
-  margin: 2em 0;
-}
-
-.gallery-image {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.5em;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.gallery-image figcaption {
+.sr-only {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 0.75em;
-  font-size: 0.9rem;
-  text-align: center;
-  /* Start hidden for hover effect */
-  opacity: 0;
-  transform: translateY(100%);
-  transition: all 0.3s ease-in-out;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
-/* Show caption on hover */
-.gallery-image:hover figcaption {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Tables & Forms --- */
 table {
   border: 0.125rem solid #1976d2;
-  border-
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+td, th {
+  border: 0.125rem solid #197
