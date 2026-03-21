@@ -1,0 +1,39 @@
+Absolutely! Using `data-label` is the "pro" way to handle responsive tables. It prevents you from having to hard-code text like "Price:" or "Nights:" directly into your CSS, making your code much more reusable.
+
+### How to implement it
+
+**1. Update your HTML**
+Add a `data-label` attribute to each `<td>` that matches the column header.
+
+```html
+<tr id="special">
+  <td data-label="Package">Deep Sea Soul</td>
+  <td data-label="Description">Sunset boat tour with dinner</td>
+  <td data-label="Nights">1</td>
+  <td data-label="Cost">$250</td>
+</tr>
+```
+
+**2. Update your CSS**
+In the mobile media query (`@media (max-width: 32.5rem)`), replace all those individual `.package::before`, `.description::before` rules with this one single, elegant block:
+
+```css
+#special td::before {
+  content: attr(data-label); /* This grabs the text from the HTML attribute */
+  position: absolute;
+  left: 1rem;
+  width: 35%;
+  font-weight: bold;
+  color: #1976d2;
+  text-align: left;
+}
+```
+
+### Why this is better:
+* **Maintenance:** If you change "Cost" to "Price" in your HTML, the mobile view updates automatically.
+* **Cleanliness:** You replace 15+ lines of CSS with just 8 lines.
+* **Scalability:** If you add a 5th column to your table, you don't have to write new CSS for it; it just works.
+
+
+
+Would you like me to show you how to add a "hamburger" menu for that navigation on mobile as well?
