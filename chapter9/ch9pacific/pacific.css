@@ -239,7 +239,7 @@ tr {
     width: 100%;
     padding-left: 35%;
     position: relative;
-    text-align-last: left;
+    text-align: left;
   }
   td::before {
     width: 25%;
